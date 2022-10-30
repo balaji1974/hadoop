@@ -32,7 +32,6 @@ Query Engine - Apache Drill (Write SQL query on NoSQL databases), Hue (alternati
 ```
 
 
-
 ## Installation - Based on Oracle Virual Box & Hartonworks Data Platform on MAC 
 ```xml
 On Mac (Fundamentally, HDP requires an x86 chip to run on and cannot run on Apple M1 chip) - This is being developed now
@@ -77,7 +76,6 @@ DESC;
 SELECT name
 FROM movie_names 
 WHERE movie_id=50;
-
 
 
 ```
