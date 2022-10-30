@@ -5,13 +5,38 @@
 ```xml
 Volume, Velocity and Varity (all the 3 factors contribute to big data)
 
+```
+
+## Hadoop & its components
+```xml
+It is an open source platform for distributed storage and distributed processing of large datasets 
+on computer clusters built on commodity hardware 
+
+HDFS - Hadoop distributed file system - Storage is distributed across cluster and makes the cluster look like one giant storage space.
+YARN - Yet another resource negotiator - It manages resources like what gets to run and when, what nodes are available and which are not etc. Its the heartbeat of the cluster. 
+MapReduce - It consist of mappers that transform the data across the cluster while reducers aggregate this data 
+Pig - Its a high level programming API that allows us to write simple scripts that chain quries and get complex answers 
+Hive - It takes the underlining distributed data and makes it look like a SQL database (query engine)
+Apache Ambari - Its the visual view of the cluster 
+MESOS - Its an alternative to YARN 
+Spark - It is used to run query on the data using scripts or other programming languages like Java, Python, Scala etc. It can handle streaming data and do machine learning. 
+Tez - Similar to Spark 
+HBase - Columanar data store 
+Storm - It is a way of processing streaming data 
+Oozie - It schedules job across the cluster 
+Zookeeper - Used for co-ordinating everything across the cluster, which nodes are up and which nodes join and leave the cluster 
+Data Injestion Systems - Kafka (connectors used for transformation and push data into Hadoop), Flume (Way to transfer weblogs to the Hadoop cluster), Sqoop (It is a command-line interface application for transferring data between relational databases and Hadoop, it is now deprecated)
+External Data Storage - MySQL, Cassandra, MongoDB
+Query Engine - Apache Drill (Write SQL query on NoSQL databases), Hue (alternative to Ambari to write interactive queries), Apache Phoenix (similar to Drill but also gives OLTP gurantees), Presto (another query engine), Apache Zeppelin (another Query tool)
 
 ```
 
-## Installation 
+
+
+## Installation - Based on Oracle Virual Box & Hartonworks Data Platform on MAC 
 ```xml
-On Mac (Fundamentally, HDP requires an x86 chip to run on and cannot run on Apple M1 chip)
-------
+On Mac (Fundamentally, HDP requires an x86 chip to run on and cannot run on Apple M1 chip) - This is being developed now
+------------------------------------------------------------------------------------------------------------------------
 Download and install Oracle Virtual box
 https://www.virtualbox.org/wiki/Downloads
 Install it
@@ -22,7 +47,6 @@ Double click on the image and import it into the virtualbox
 After installation, start it and then launch it from the browser using the link:
 http://127.0.0.1:1080/
 Default username/pwd -> maria_dev/maria_dev 
-
 
 
 Download the data to be used from the below link:
