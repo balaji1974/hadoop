@@ -47,6 +47,13 @@ After installation, start it and then launch it from the browser using the link:
 http://127.0.0.1:1080/
 Default username/pwd -> maria_dev/maria_dev 
 
+or go directly into ambari dashboard from the url:
+http://127.0.0.1:8080/
+
+You can also ssh into the sandbox using the command:
+ssh -p 2222 maria_dev@127.0.0.1
+password will be maria_dev
+
 
 Download the data to be used from the below link:
 https://grouplens.org/datasets/movielens/
@@ -86,10 +93,32 @@ It is optimized for handling large files
 Data is split into blocks (128MB per block - default) and stored across a large cluster of computers 
 It consist of name node which keeps track of where the blocks live and a data node  where the actul block of data is stored. 
 
+You can also ssh into the sandbox using the command:
+ssh -p 2222 maria_dev@127.0.0.1
+password will be maria_dev
+```
+
+## Hadoop commands 
+```xml
+
+hadoop fs -ls  -> To list the hadoop filesystem 
+hadoop fs -mkdir ml-100k -> To create a directory called ml-100k
+ls -> This will display the local filesystem and not the hdfs filesystem
+pwd -> to display the present working directory of the local filesystem
+wget http://media.sundog-soft.com/hadoop/ml-100k/u.data -> This command fetches the file u.data from remote server into the local file system
+hadoop fs -copyFromLocal u.data ml-100k/u.data -> This command will copy the file u.data from the local fileystem into the HDFS filesystem's directory ml-100k
+hadoop fs -rm ml-100k/u.data -> This will remove the file u.data from the HDFS filesystem
+hadoop fs -rmdir ml-100k -> This command will remove the ml-100k directory from the HDFS filesystem 
+hadoop fs -> this will display all the commands available in the hadoop filesystem 
 
 ```
 
+## Mapreduce 
+```xml
 
+
+
+```
 
 
 
