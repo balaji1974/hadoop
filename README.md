@@ -115,7 +115,10 @@ hadoop fs -> this will display all the commands available in the hadoop filesyst
 
 ## Mapreduce 
 ```xml
+Divides data into partitions that are mapped (transformed) and reduced (aggregated) by mapper and reducer functions we define 
 
+Sequence of activies 
+Mapper -> Shuffle and Sort -> Reducer 
 
 
 ```
