@@ -80,6 +80,14 @@ WHERE movie_id=50;
 
 ```
 
+## HDFS 
+```xml
+It is optimized for handling large files
+Data is split into blocks (128MB per block - default) and stored across a large cluster of computers 
+It consist of name node which keeps track of where the blocks live and a data node  where the actul block of data is stored. 
+
+
+```
 
 
 
