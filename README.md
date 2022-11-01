@@ -120,6 +120,14 @@ Divides data into partitions that are mapped (transformed) and reduced (aggregat
 Sequence of activies 
 Mapper -> Shuffle and Sort -> Reducer 
 
+Mapreduce is written in Java 
+
+It consist of Resource Manager and Node Manager.
+
+The ResourceManager (RM) is responsible for tracking the resources in a cluster, and scheduling applications (YARN)
+Node manager is the slave daemon of Yarn. The Hadoop Yarn Node Manager is the per-machine/per-node framework agent who is responsible for containers, monitoring their resource usage and reporting the same to the ResourceManager.
+
+An Application master monitors the worker tasks for errors of hanging 
 
 ```
 
