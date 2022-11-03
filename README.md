@@ -129,10 +129,20 @@ Node manager is the slave daemon of Yarn. The Hadoop Yarn Node Manager is the pe
 
 An Application master monitors the worker tasks for errors or hanging 
 
-
-
 ```
 
+## Apache Ambari 
+```xml
+Dashboard can be accessed using 
+http://127.0.0.1:8080/
+
+Dashboard gives all the metrics of the cluser
+All the services that are running can be monitored from the side menu or from the services tab
+Host tab gives a view of every host running on the cluster
+Alert tab is used for configuring existing alerts and setting up new alerts
+Admin tab gives the details of all installed services and their versions
+
+```
 
 
 
