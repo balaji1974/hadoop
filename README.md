@@ -141,9 +141,99 @@ All the services that are running can be monitored from the side menu or from th
 Host tab gives a view of every host running on the cluster
 Alert tab is used for configuring existing alerts and setting up new alerts
 Admin tab gives the details of all installed services and their versions
+File view gives the view of the HDFS file system
+Hive view is used to running hive related queries
+Pig view is used to run the pig scripts
+
 
 ```
 
+
+## Apache Pig 
+```xml
+Writing Map-Reduce programs takes a long time and sometime complex
+Pig Lating is a SQL like syntax to do map and reduce step 
+It is highly extensible with user-defined functions
+
+For running the sample scripts below: upload the files u.data and u.item using the ambari file upload tool
+into the user/maria_dev/ml-100k folder
+
+Next go the pig view and create a new pig script and run the entire scripts listed below by creating a name for the script and hitting the execute button
+
+Sample pig script: (find movies with ratings > 4)
+-------------------------------------------------
+ratings = LOAD '/user/maria_dev/ml-100k/u.data' AS (userID:int, movieID:int, rating:int, ratingTime:int);
+
+metadata = LOAD '/user/maria_dev/ml-100k/u.item' USING PigStorage('|')
+	AS (movieID:int, movieTitle:chararray, releaseDate:chararray, videoRealese:chararray, imdblink:chararray);
+   
+nameLookup = FOREACH metadata GENERATE movieID, movieTitle,
+	ToUnixTime(ToDate(releaseDate, 'dd-MMM-yyyy')) AS releaseTime;
+   
+ratingsByMovie = GROUP ratings BY movieID;
+
+avgRatings = FOREACH ratingsByMovie GENERATE group as movieID, AVG(ratings.rating) as avgRating;
+
+fiveStarMovies = FILTER avgRatings BY avgRating > 4.0;
+
+fiveStarsWithData = JOIN fiveStarMovies BY movieID, nameLookup BY movieID;
+
+oldestFiveStarMovies = ORDER fiveStarsWithData BY nameLookup::releaseTime;
+
+DUMP oldestFiveStarMovies;
+
+---------------------------
+Next run the same script by going to the script tab and clicking the execute on Tez check box. 
+This will run much faster than before. 
+
+
+Sample pig script: (find movies with worst ratings < 2)
+-------------------------------------------------------
+ratings = LOAD '/user/maria_dev/ml-100k/u.data' AS (userID:int, movieID:int, rating:int, ratingTime:int);
+
+metadata = LOAD '/user/maria_dev/ml-100k/u.item' USING PigStorage('|')
+	AS (movieID:int, movieTitle:chararray, releaseDate:chararray, videoRealese:chararray, imdblink:chararray);
+   
+nameLookup = FOREACH metadata GENERATE movieID, movieTitle;
+   
+groupedRatings = GROUP ratings BY movieID;
+
+averageRatings = FOREACH groupedRatings GENERATE group AS movieID, AVG(ratings.rating) AS avgRating, 
+	COUNT(ratings.rating) AS numRatings;
+
+badMovies = FILTER averageRatings BY avgRating < 2.0;
+
+namedBadMovies = JOIN badMovies BY movieID, nameLookup BY movieID;
+
+finalResults = FOREACH namedBadMovies GENERATE nameLookup::movieTitle AS movieName, 
+	badMovies::avgRating AS avgRating, badMovies::numRatings AS numRatings;
+
+finalResultsSorted = ORDER finalResults BY numRatings DESC;
+
+DUMP finalResultsSorted;
+
+---------------------------
+
+
+Other key terms in Pig useful for creating relations
+LOAD, STORE, DUMP, FILTER, DISTINCT, FOREACH/GENERATE, MAPREDUCE, STREAM, 
+SAMPLE, JOIN, COGROUP, GROUP, CROSS, CUBE, ORDER, RANK, LIMIT, UNION, SPLIT 
+
+Diagnostics - DESCRIBE, EXPLAIN, ILLUSTRATE 
+User Defined Functions (UDFs) - REGISTER, DEFINE, IMPORT
+Other functions and loaders - AVG, CONCAT, COUNT, MAX, MIN, SIZE, SUM 
+Storage Classes - PigStorage, TextLoader, JsonLoader, AvroStorage, ParquetLoader, OrcStorage, HBaseStorage 
+
+
+```
+
+
+## Apache Spark 
+```xml
+
+
+
+```
 
 
 ### References
