@@ -131,6 +131,25 @@ An Application master monitors the worker tasks for errors or hanging
 
 ```
 
+## Change Apache Ambari admin password
+```xml
+From terminal: 
+ssh maria_dev@127.0.0.1 -p 2222
+password: maria_dev
+
+Inside the ambari sandbox run the command
+su root 
+password: hadoop
+
+You will asked for the password again and then the new password along with retyping the new password
+
+After this run the command ambari-admin-password-reset
+This will ask for the new password for admin along with retyping the password 
+
+After resetting the server will restart
+
+```
+
 ## Apache Ambari 
 ```xml
 Dashboard can be accessed using 
@@ -238,10 +257,22 @@ Its built on the concept of RDD (Resilient Distributed Dataset)
 Its main components are Spark Streaming, Spark SQL, MLLib, GraphX and Spark Core. 
 
 
-RDD
----
+RDD - Resilent Distributed Dataset
+Spark shell creates a spark context object which creates a RDD
+Eg. 
+rdd=sc.parallelize([1,2,3,4])
+squaredRDD=rdd.map(lambda x:x*x) 
 
 
+Work with Spark 
+----------------
+Ambari dashboard (login using admin user and password) -> Services -> Spark 2 -> Config tab ->  
+Advanced spark2-log4j-properties -> 
+Change the line-> log4j.rootCategory=INFO, console
+To -> log4j.rootCategory=ERROR, console
+And save it, then RESTART services 
+
+spark-submit <scriptname> -> this will submit a spark script 
 
 ```
 
