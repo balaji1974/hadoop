@@ -230,6 +230,16 @@ Storage Classes - PigStorage, TextLoader, JsonLoader, AvroStorage, ParquetLoader
 
 ## Apache Spark 
 ```xml
+Its a fast and general engine for large scale data processing
+Its scalable with a choice of using mulitple cluster managers like YARN, MESOS or Spark cluster manager
+Its many times faster than MapReduce and its DAG engine optimizes workflow
+It can be coded in Python, Java or Scala (Spark is written in scale and it gives the best performance)
+Its built on the concept of RDD (Resilient Distributed Dataset)
+Its main components are Spark Streaming, Spark SQL, MLLib, GraphX and Spark Core. 
+
+
+RDD
+---
 
 
 
