@@ -251,7 +251,7 @@ Storage Classes - PigStorage, TextLoader, JsonLoader, AvroStorage, ParquetLoader
 ```xml
 Its a fast and general engine for large scale data processing
 Its scalable with a choice of using mulitple cluster managers like YARN, MESOS or Spark cluster manager
-Its many times faster than MapReduce and its DAG engine optimizes workflow
+Its many times faster than MapReduce and its DAG (Directed Acyclic Graph) engine optimizes workflow
 It can be coded in Python, Java or Scala (Spark is written in scale and it gives the best performance)
 Its built on the concept of RDD (Resilient Distributed Dataset)
 Its main components are Spark Streaming, Spark SQL, MLLib, GraphX and Spark Core. 
@@ -273,6 +273,63 @@ To -> log4j.rootCategory=ERROR, console
 And save it, then RESTART services 
 
 spark-submit <scriptname> -> this will submit a spark script 
+
+DataFrames: Contains row objects, can run sql quries, has a schema, can read and write to JSON, Hive, parquet and communicates with JDBC/ODBC, Tableau 
+
+
+```
+
+## Apache Hive - Relational Data Store 
+```xml
+It translates SQL queries to MapReduce or Tez jobs on your cluster 
+HiveQL (SQL like syntax) - Interactive, Scalable, Easy OLAP, Highly optimized and Highly extensible 
+
+
+Login into Ambari using maria_dev user -> Hive View -> Drop all existing tables -> DROP TABLES <name>;
+
+Upload Table -> File Type -> Settings -> Field Delimiter -> ASCII value 9 (tab delimiter)
+Upload from Local -> select u.data -> Enter Table name (ratings) 
+Column Names -> userId, movieId, rating, epochseconds -> upload table 
+
+
+Upload Table -> File Type -> Settings -> Field Delimiter -> ASCII value 124 (pipe delimiter)
+Upload from Local -> select u.item -> Enter Table name (names)
+Column Names -> movieId, title -> upload table 
+
+
+Create View and JOIN - Example 
+-------------------------------
+CREATE VIEW IF NOT EXIST topMovieIDs AS 
+SELECT movieid, count(movieid) as ratingCount FROM ratings
+GROUP BY movieid 
+ORDER BY ratingCount DESC;
+
+SELECT n.title, ratingCount 
+FROM topMovieIDs t JOIN names n on t.movieid=n.movieid;
+
+DROP VIEW topMovieIDs;
+
+
+Schema On Read
+--------------
+CREATE TABLE ratings (
+	userID INT,
+	movieID INT,
+	rating INT,
+	time INT
+)
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+LOAD DATA LOCAL INPATH '${env:HOME}/ml-100k/u.data'
+OVERWRITE INTO TABLE ratings 
+
+LOAD DATA -> moves data from distributed filesystem into Hive
+LOAD DATA LOCAL -> copies data from your local filesystem into Hive
+CREATE EXTERNAL TABLE -> Hive does not take ownership of the table created 
+PARTITION BY -> To store data in a partitioned subdirectory 
+STRUCT -> To store structured data in the column level 
 
 ```
 
