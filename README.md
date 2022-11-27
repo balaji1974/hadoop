@@ -333,6 +333,54 @@ STRUCT -> To store structured data in the column level
 
 ```
 
+## RDBMS with Hadoop 
+```xml
+
+Sqoop -> SQL + Hadoop -> Kicks of MapReduce jobs to import/export large volume of data from RDBMS 
+
+sqoop import --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table movies -> Move data from mysql to HDFS table
+
+sqoop import --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver -table movies --hive-import -> Move data from mysql to Hive
+
+sqoop export --connect jdbc:mysql://localhost/movielens -m 1 --driver com.mysql.jdbc.Driver --table exported_movies --export-dir /apps/hive/warehouse/movies --input-fields-terminated-by '\0001' -> Export data from Hive to MySQL (target table must already be present with columns in same order)
+
+
+Hartonworks comes with mysql preinstalled
+Connect to mysql 
+ssh maria_dev@127.0.0.1 -p 2222
+password: maria_dev
+
+mysql -u root -p
+password: hortonworks1
+
+```
+
+## NoSQL with Hadoop 
+```xml
+Login into Ambari dashboard using admin user
+Go to HBase -> Service Action -> Start 
+
+Next login into the VM using: ssh maria_dev@127.0.0.1 -p 2222
+Next start the rest service -> sudo /usr/hdp/current/hbase-master/bin/hbase-daemon.sh start rest -p 8000 --infoport 8001
+
+Now we can use a REST service to do operations on the HBase (insert/update/delete)
+
+Finally run
+Next start the rest service -> sudo /usr/hdp/current/hbase-master/bin/hbase-daemon.sh stop rest
+
+Check the nosql repo for HBase setup and usage
+
+
+```
+
+
+
+
+
+
+
+
+
 
 ### References
 ```xml
