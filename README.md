@@ -357,6 +357,9 @@ password: hortonworks1
 
 ## NoSQL with Hadoop 
 ```xml
+
+HBase
+-----
 Login into Ambari dashboard using admin user
 Go to HBase -> Service Action -> Start 
 
@@ -368,7 +371,20 @@ Now we can use a REST service to do operations on the HBase (insert/update/delet
 Finally run
 Next start the rest service -> sudo /usr/hdp/current/hbase-master/bin/hbase-daemon.sh stop rest
 
-Check the nosql repo for HBase setup and usage
+
+From the command prompt in the VM you can login into Hbase using the command: 
+hbase shell
+
+
+Cassandra
+---------
+No master node and hence no single point of failure, it follows eventual consistency 
+
+Install Cassendra -> will update later
+
+
+
+***Check the nosql repo for HBase setup and usage
 
 
 ```
