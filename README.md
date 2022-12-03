@@ -380,8 +380,33 @@ Cassandra
 ---------
 No master node and hence no single point of failure, it follows eventual consistency 
 
-Install Cassendra -> will update later
+Steps to install and work with Cassendra -> 
+ 1. ssh maria_dev@127.0.0.1 -p 2222
+ 2. Enter pwd
+ 3. su root 
+ 4. Enter su pwd
+ 5. python -V -> Check to see if python version is 2.7 or above
+ 6. cd /etc/yum.repos.d 
+ 7. vi datastax.repo
+ 8. Type the following and save the file 
+ 	[datastax]
+	name = DataStax Repo for Apache Cassendra
+	baseurl = http://rpm.datastax.com/community
+	enabled = 1
+	gpgcheck = 0
+ 9. yum install dsc30
+10. cqlsh -> to enter into cassandra 
+11. CREATE KEYSPACE movielens with replication = {'class': 'SimpleStrategy', 'replication_factor': '1'} AND durable_writes=true;
+12. USE movielens;
+12. CREATE TABLE users (user_id int, age int, gender text, occupation text, zip text, PRIMARY KEY(user_id));
+13. DESCRIBE users;
+14. SELECT * FROM users;
 
+Spark - Cassandra -> To complete later
+
+
+MongoDB
+-------
 
 
 ***Check the nosql repo for HBase setup and usage
