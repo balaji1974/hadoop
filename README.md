@@ -13,20 +13,28 @@ It is an open source platform for distributed storage and distributed processing
 on computer clusters built on commodity hardware 
 
 HDFS - Hadoop distributed file system - Storage is distributed across cluster and makes the cluster look like one giant storage space.
+
 YARN - Yet another resource negotiator - It manages resources like what gets to run and when, what nodes are available and which are not etc. Its the heartbeat of the cluster. 
+MESOS - Its an alternative to YARN 
+
 MapReduce - It consist of mappers that transform the data across the cluster while reducers aggregate this data 
+Tez - Alternative to MapReduce, DAG (directed acyclic graph) concept
+Spark - It is used to run query on the data using scripts or other programming languages like Java, Python, Scala etc. It can handle streaming data and do machine learning, AG (directed acyclic graph) concept and in-memory processing makes it quite fast. 
+
 Pig - Its a high level programming API that allows us to write simple scripts that chain quries and get complex answers 
 Hive - It takes the underlining distributed data and makes it look like a SQL database (query engine)
+
+HBase - Columanar NoSQL data store
+External Data Storage - MySQL, Cassandra, MongoDB
+
 Apache Ambari - Its the visual view of the cluster 
-MESOS - Its an alternative to YARN 
-Spark - It is used to run query on the data using scripts or other programming languages like Java, Python, Scala etc. It can handle streaming data and do machine learning. 
-Tez - Similar to Spark 
-HBase - Columanar data store 
+
 Storm - It is a way of processing streaming data 
 Oozie - It schedules job across the cluster 
+
 Zookeeper - Used for co-ordinating everything across the cluster, which nodes are up and which nodes join and leave the cluster 
 Data Injestion Systems - Kafka (connectors used for transformation and push data into Hadoop), Flume (Way to transfer weblogs to the Hadoop cluster), Sqoop (It is a command-line interface application for transferring data between relational databases and Hadoop, it is now deprecated)
-External Data Storage - MySQL, Cassandra, MongoDB
+
 Query Engine - Apache Drill (Write SQL query on NoSQL databases), Hue (alternative to Ambari to write interactive queries), Apache Phoenix (similar to Drill but also gives OLTP gurantees), Presto (another query engine), Apache Zeppelin (another Query tool)
 
 ```
