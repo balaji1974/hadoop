@@ -423,7 +423,11 @@ MongoDB
 ```
 
 
+## Guildlines for choosing Hadoop cluster
+```xml
+A common rule of thumb is to have no more than 20 nodes per namenode, and to have one datanode for every 1-2 TB of data. Additionally, having one node for every 4-8 CPU cores and 16-32 GB of RAM is a good guideline for processing power.
 
+```
 
 
 
@@ -434,4 +438,5 @@ MongoDB
 ### References
 ```xml
 https://www.udemy.com/course/the-ultimate-hands-on-hadoop-tame-your-big-data
+https://saturncloud.io/blog/what-is-the-ideal-number-of-nodes-in-a-hadoop-cluster/
 ```
